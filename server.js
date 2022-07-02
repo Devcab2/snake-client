@@ -10,6 +10,12 @@ server.on('connection', (client) => {
   client.write('Name:CAB');
 });
 
+
+server.listen(port, () => {
+  console.log(`The server is listening on port:${port}`);
+});
+
+
 // server -> object that represents the server that we created with (net.createServer())
 // server.on -> A function that is telling our server to listen for events
 // 'connection' -> The event type. Name of the event type
@@ -20,10 +26,6 @@ server.on('connection', (client) => {
  
 //connection.setEncoding('utf-8',);
 //});
-
-server.listen(port, () => {
-  console.log(`The server is listening on port:${port}`);
-});
 
 // stdin -> Object representing terminal input
 // stdin.on -> A function inside of stdIn that sets up the event listener
