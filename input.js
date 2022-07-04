@@ -1,5 +1,6 @@
-let connection;
+const {BANTER} = require("./constants.js");
 
+let connection;
 
 const setupInput = (conn) => {
   connection = conn;
@@ -8,54 +9,29 @@ const setupInput = (conn) => {
   stdin.setEncoding("utf-8");
   stdin.resume();
   stdin.on("data", handleUserInput);
-  stdin.on("data", handleBanter);
-};
-
-
-const send = function(msg) {
-  connection.write(msg);
-};
-
-
-const handleMovement = function(key) {
-  if (key === 'w') {
-    send('Move: up');
-  } else if (key === 'a') {
-    send('Move: left');
-  } else if (key === 's') {
-    send('Move: down');
-  } else if (key === 'd') {
-    send('Move: right');
-  }
+  
+  return stdin;
 };
 
 const handleUserInput = function(key) {
-  if (key === '\u0003') {
+  if (key === "\u0003") {
     process.exit();
-  } else if (key === 'w' || key === 'a' || key === 's' || key === 'd') {
-    handleMovement(key);
+  }
+  if (key === 'w') {
+    connection.write('Move: up');
+  }
+  if (key === 'a') {
+    connection.write('Move: left');
+  }
+  if (key === 's') {
+    connection.write('Move: down');
+  }
+  if (key === 'd') {
+    connection.write('Move: right');
+  }
+  if (BANTER[key]) {
+    connection.write(BANTER[key]);
   }
 };
 
-
-const banter = function(key) {
-  if (key === '1') {
-    send('Say: Hi!');
-  } else if (key === '2') {
-    send('Say: XD');
-  } else if (key === '3') {
-    send('Say: LOL');
-  }
-};
-
-
-const handleBanter = function(key) {
-  if (key === '1' || key === '2' || key === '3') {
-    banter(key);
-  }
-};
-
-
-module.exports = {
-  setupInput: setupInput
-};
+module.exports = {setupInput};

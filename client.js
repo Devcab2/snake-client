@@ -1,28 +1,26 @@
 const net = require("net");
-const {setupInput} = require('./input.js');
 const {IP, PORT} = require('./constants.js');
 
+const connect = function() {
 
-const conn = net.createConnection({
-  host: IP,
-  port: PORT
-});
+  const conn = net.createConnection({
+    host: IP,
+    port: PORT
+  });
 
+  conn.setEncoding("utf8");
 
-conn.setEncoding("utf8");
-
-
-conn.on("data", (messageToClient) => {
-  console.log(`Name:${messageToClient}`);
-});
-
-
-conn.on("data", () => {
-  console.log("you ded cuz u idled");
-});
+  conn.on("connect", () => {
+    console.log('Successfully connected to game server');
+    conn.write("Name:  CAB");
+  });
 
 
-console.log("Connecting ...");
-console.log("Hello server: I'am client");
+  conn.on("end", () => {
+    console.log("Game Over");
+  });
 
-setupInput(conn);
+  return conn;
+};
+
+module.exports = { connect };
