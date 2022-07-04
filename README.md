@@ -8,7 +8,7 @@ The goal is to grow it to become as big as possible without bumping into the sid
 
 This a multiplayer take on the game...
 
-In order to play you must , donwload this [repo found here](https://github.com/taniarascia/snek)repo in order to run the server side.
+In order to play you must , donwload this     [repo found here](https://github.com/taniarascia/snek)  repo in order to run the server side.
 
 
 ## How to play?
