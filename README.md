@@ -21,7 +21,7 @@ In order to play you must , donwload this     [repo found here](https://github.c
 
 - Control + C is the only way to terminate the game, it will need to be refreshed after each attempt.
 
-- keys: 1, 2, 3 will print out predermined messages during the game.
+- keys: 1, 2, 3 will print out predetermined messages during the game.
 
 ## Note to Reader
 
