@@ -12,8 +12,6 @@ conn.on("data", (messageToClient) => {
   console.log(`Name:${messageToClient}`);
 });
 
-setupInput(conn);
-
 conn.on("data", () => {
   console.log("you ded cuz u idled");
 });
@@ -21,9 +19,7 @@ conn.on("data", () => {
 console.log("Connecting ...");
 console.log("Hello server: I'am client");
 
-
-
-
+setupInput(conn);
 /*
 conn.on("data", () => {
   setInterval(() => {
