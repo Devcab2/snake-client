@@ -1,4 +1,6 @@
 let connection;
+
+
 const setupInput = (conn) => {
   connection = conn;
   const stdin = process.stdin;
@@ -7,11 +9,13 @@ const setupInput = (conn) => {
   stdin.resume();
   stdin.on("data", handleUserInput);
   stdin.on("data", handleBanter);
-  //return stdin;
 };
+
+
 const send = function(msg) {
   connection.write(msg);
 };
+
 
 const handleMovement = function(key) {
   if (key === 'w') {
@@ -25,6 +29,15 @@ const handleMovement = function(key) {
   }
 };
 
+const handleUserInput = function(key) {
+  if (key === '\u0003') {
+    process.exit();
+  } else if (key === 'w' || key === 'a' || key === 's' || key === 'd') {
+    handleMovement(key);
+  }
+};
+
+
 const banter = function(key) {
   if (key === '1') {
     send('Say: Hi!');
@@ -35,19 +48,13 @@ const banter = function(key) {
   }
 };
 
-const handleUserInput = function(key) {
-  if (key === '\u0003') {
-    process.exit();
-  } else if (key === 'w' || key === 'a' || key === 's' || key === 'd') {
-    handleMovement(key);
-  }
-};
 
 const handleBanter = function(key) {
   if (key === '1' || key === '2' || key === '3') {
     banter(key);
   }
 };
+
 
 module.exports = {
   setupInput: setupInput
